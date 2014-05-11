@@ -1,5 +1,64 @@
 .map {
+    position: relative;
     width: 940px;
-    height: 484px;
+    height: 400px;
     background: #000;
+}
+
+
+.map::before {
+    /*content: "";*/
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: url(../img/map.png);
+    opacity: .4;
+    z-index: 5000;
+}
+
+.map-popup {
+    position: absolute;
+    display: block;
+    min-width: 360px;
+    min-height: 200px;
+    padding: 10px;
+    background: #1A1A1A;
+}
+
+.map-popup__arrow {
+    font: 0/0 'a';
+    -webkit-transform: rotate(-45deg) translate(0, -50%);
+    -moz-transform: rotate(-45deg) translate(0, -50%);
+    -ms-transform: rotate(-45deg) translate(0, -50%);
+    -o-transform: rotate(-45deg) translate(0, -50%);
+    transform: rotate(-45deg) translate(0, -50%);
+    -webkit-transform-origin: center;
+    -moz-transform-origin: center;
+    -ms-transform-origin: center;
+    -o-transform-origin: center;
+    transform-origin: center;
+    background: #1A1A1A;
+    position: absolute;
+    z-index: 0;
+    left: 50%;
+    bottom: -14px;
+    display: block;
+    width: 17px;
+    height: 17px;
+}
+
+.map-popup__closer {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #FFF;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.map-popup__content {
+    max-height: 300px;
+    overflow: auto;
 }
