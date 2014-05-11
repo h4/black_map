@@ -23,9 +23,18 @@
         observeEvents(map);
 
         var placemarks = [
-            [59.939095,30.315868],
-            [43.116391,131.882421],
-            [-22.77653,-43.068999]
+            {
+                coords: [59.939095,30.315868],
+                itemId: 1
+            }, {
+                coords: [43.116391,131.882421],
+                itemId: 2
+
+            }, {
+                coords: [-22.77653,-43.068999],
+                itemId: 3
+            }
+
         ];
 
         addPlacemarks(map, placemarks);
@@ -42,11 +51,10 @@
 
     function addPlacemarks(map, placemarks) {
         var BalloonLayout = ymaps.templateLayoutFactory.createClass(
-            '<div class="map-popup top">' +
+            '<div class="map-popup">' +
                 '<div class="map-popup__arrow"></div>' +
                 '<div class="map-popup__closer">&times;</div>' +
-                '<div class="map-popup__inner">' +
-                '</div>' +
+                '<div class="map-popup__content"></div>' +
             '</div>',
 
             {
@@ -58,7 +66,7 @@
 
                     this.$element = $('.map-popup', _parent);
                     this.$closer = $('.map-popup__closer', this.$element);
-                    this.$mainContent = $('.map-popup__inner', this.$element);
+                    this.$mainContent = $('.map-popup__content', this.$element);
 
                     this._loadMainContent();
                     this._applyElementOffset();
@@ -120,8 +128,9 @@
         };
 
         for (var i=0, l=placemarks.length; i<l; i++) {
-            var placemark = new ymaps.Placemark(placemarks[i], {
-                itemId: 1,
+            var item = placemarks[i];
+            var placemark = new ymaps.Placemark(item.coords, {
+                itemId: item.itemId,
                 host: 'http://localhost:8000/ru/schedule/map/'
             }, placemarkOptions);
 
