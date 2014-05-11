@@ -159,18 +159,18 @@
 
     function setBalloonPane (placemark, mapData) {
         mapData = mapData || {
-            globalPixelCenter: myMap.getGlobalPixelCenter(),
-            zoom: myMap.getZoom()
+            globalPixelCenter: map.getGlobalPixelCenter(),
+            zoom: map.getZoom()
         };
 
-        var mapSize = myMap.container.getSize(),
+        var mapSize = map.container.getSize(),
             mapBounds = [
                 [mapData.globalPixelCenter[0] - mapSize[0] / 2, mapData.globalPixelCenter[1] - mapSize[1] / 2],
                 [mapData.globalPixelCenter[0] + mapSize[0] / 2, mapData.globalPixelCenter[1] + mapSize[1] / 2]
             ],
             balloonPosition = placemark.balloon.getPosition(),
         // Используется при изменении зума.
-            zoomFactor = Math.pow(2, mapData.zoom - myMap.getZoom()),
+            zoomFactor = Math.pow(2, mapData.zoom - map.getZoom()),
         // Определяем, попадает ли точка привязки балуна в видимую область карты.
             pointInBounds = ymaps.util.bounds.contains(mapBounds, [
                     balloonPosition[0] * zoomFactor,
