@@ -6,8 +6,11 @@
     var mapContainer = document.getElementsByClassName("map")[0];
 
     function init(){
+        var blackMapType;
+        var placemarks = $(mapContainer).data('placemarks');
+
         ymaps.layer.storage.add('bm#common', getLayer);
-        var blackMapType = new ymaps.MapType('BM', ['bm#common']);
+        blackMapType = new ymaps.MapType('BM', ['bm#common']);
         ymaps.mapType.storage.add('bm#common', blackMapType);
 
         map = new ymaps.Map(mapContainer, {
@@ -17,26 +20,9 @@
             behaviors: []
         });
 
-        window.myMap = map;
         map.setType("bm#common");
 
         observeEvents(map);
-
-        var placemarks = [
-            {
-                coords: [59.939095,30.315868],
-                itemId: 1
-            }, {
-                coords: [43.116391,131.882421],
-                itemId: 2
-
-            }, {
-                coords: [-22.77653,-43.068999],
-                itemId: 3
-            }
-
-        ];
-
         addPlacemarks(map, placemarks);
     }
 
