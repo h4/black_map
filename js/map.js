@@ -104,21 +104,6 @@
             }
         );
 
-        var BalloonContentLayout = ymaps.templateLayoutFactory.createClass(
-            '<div style="margin: 10px;">' +
-            '<b>{{properties.name}}</b><br />' +
-            '<i id="count"></i> ' +
-            '<button id="counter-button"> +1 </button>' +
-            '</div>', {
-
-            build: function () {
-                BalloonContentLayout.superclass.build.call(this);
-            },
-
-            clear: function () {
-                BalloonContentLayout.superclass.clear.call(this);
-            }
-        });
 
         var placemarkOptions = {
             iconLayout: 'default#image',
