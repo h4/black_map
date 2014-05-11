@@ -58,7 +58,9 @@
 
                     this.$element = $('.map-popup', _parent);
                     this.$closer = $('.map-popup__closer', this.$element);
-                    this.$mainContent = $('.map-popup__inner', _parent);
+                    this.$mainContent = $('.map-popup__inner', this.$element);
+
+                    this._loadMainContent();
                     this._applyElementOffset();
                     this._attachListeners();
                 },
@@ -89,6 +91,15 @@
 
                     // Правильный способ закрыть балун.
                     this.events.fire('userclose');
+                },
+
+                _loadMainContent: function () {
+                    var props = this.getData().properties;
+                    var self = this;
+
+                    $.get(props.get('host') + props.get('itemId'), function(data) {
+                        self.$mainContent.html(data);
+                    });
                 }
             }
         );
@@ -120,14 +131,16 @@
                 radius: 20
             },
             balloonLayout: BalloonLayout,
-//            balloonContentLayout: BalloonContentLayout,
             ballooncloseButton: false
         };
 
         for (var i=0, l=placemarks.length; i<l; i++) {
             var placemark = new ymaps.Placemark(placemarks[i], {
-                balloonContent: "метка"
+                itemId: 1,
+                host: 'http://localhost:8000/ru/schedule/map/'
             }, placemarkOptions);
+
+
             map.geoObjects.add(placemark);
         }
     }

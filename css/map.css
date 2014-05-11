@@ -24,7 +24,8 @@
     min-width: 360px;
     min-height: 200px;
     padding: 10px;
-    background: #1A1A1A;
+    background: #000;
+    color: #FFF;
 }
 
 .map-popup__arrow {
@@ -39,7 +40,7 @@
     -ms-transform-origin: center;
     -o-transform-origin: center;
     transform-origin: center;
-    background: #1A1A1A;
+    background: #000;
     position: absolute;
     z-index: 0;
     left: 50%;
