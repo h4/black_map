@@ -27,7 +27,8 @@
     }
 
     function getLayer() {
-        var layer = new ymaps.Layer('img/map.png', {tileSize: [940, 400]});
+        var tileUrl = $(mapContainer).data('tileurl');
+        var layer = new ymaps.Layer(tileUrl, {tileSize: [940, 400]});
         layer.getZoomRange = function() {
             return ymaps.vow.resolve([1, 1]);
         };
@@ -101,7 +102,7 @@
 
         var placemarkOptions = {
             iconLayout: 'default#image',
-            iconImageHref: 'img/mark.png',
+            iconImageHref: $(mapContainer).data('placemarkurl'),
             iconImageSize: [20, 26],
             iconImageOffset: [-10, -26],
             iconShape: {
@@ -117,7 +118,7 @@
             var item = placemarks[i];
             var placemark = new ymaps.Placemark(item.coords, {
                 itemId: item.itemId,
-                host: 'http://localhost:8000/ru/schedule/map/'
+                host: $(mapContainer).data('popupcontenturl')
             }, placemarkOptions);
 
 
