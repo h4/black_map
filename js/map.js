@@ -16,8 +16,7 @@
         map = new ymaps.Map(mapContainer, {
             center: [37, 20],
             zoom: 1,
-            controls: [],
-            behaviors: []
+            controls: ['zoomControl']
         });
 
         map.setType("bm#common");
@@ -28,9 +27,9 @@
 
     function getLayer() {
         var tileUrl = $(mapContainer).data('tileurl');
-        var layer = new ymaps.Layer(tileUrl, {tileSize: [940, 400]});
+        var layer = new ymaps.Layer(tileUrl);
         layer.getZoomRange = function() {
-            return ymaps.vow.resolve([1, 1]);
+            return ymaps.vow.resolve([0, 2]);
         };
 
         return layer;
